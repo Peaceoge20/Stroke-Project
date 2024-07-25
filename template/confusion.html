@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction</title>
+
+    <style>
+        body {
+            align-items: center;
+            color: #ed0606;
+            background-color: #a62929; /* Add your desired background color here */
+        }
+        .container {
+            background-color: rgb(255, 242, 0);
+        }
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th, tr {
+          border: 1px solid #211f1f;
+          text-align: left;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+    </style>
+</head>
+{% block content  %}
+<body style="background-color: rgb(164, 255, 225);">
+   
+
+    <div class="container" >
+        <br>
+        <h2 style="text-align: center;">All Prediction</h2>
+    
+        <div class="row mt-4">
+            <div class="col-md-8 offset-md-2">
+                {% for mod in peace1 %}        
+                    <br><br>
+                
+                    <h4>{{ mod.model }} Classification</h4>
+                    <br>
+                    <table class="table" style="border-collapse: collapse; width: 100%;">
+                        <tbody>
+                            <tr>
+                                <th style="border: 1px solid #211f1f;"> Title </th>
+                                <th style="border: 1px solid #211f1f;">Values</th>
+                            </tr>
+                            
+
+                            <tr>
+                                <td style="border: 1px solid #211f1f;">
+                                    Name of the Algorithm:     
+                                </td>
+                                <td style="border: 1px solid #211f1f;">
+                                    {{ mod.model }}
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #211f1f;">
+                                    The Mean of the Cross Validation Score: 
+                                </td>
+                                <td style="border: 1px solid #211f1f;">
+                                    {{ mod.validation }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #211f1f;"> 
+                                    The Standard deviation of the Cross Validation Score: 
+                                </td>
+                                <td style="border: 1px solid #211f1f;">
+                                    {{ mod.standard }}                        
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #211f1f;">
+                                    Accuracy Score for the train model:                       </td>
+                                <td style="border: 1px solid #211f1f;">
+                                    {{ mod.trainresult }}  
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #211f1f;">
+                                    Accuracy Score for the test model: 
+                                <td style="border: 1px solid #211f1f;">
+                                    {{ mod.testresult }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #211f1f;">
+                                    CONFUSION MATRIX OF {{ model }}
+                                </td>
+                                <td style="border: 1px solid #211f1f;">
+                                    {{ mod.conmatrix }}                          
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br><br>
+                    <img src="{% url 'roccurve' %}" alt="Dynamic Plot">
+                    
+                {% endfor %}    
+            </div>
+        </div>
+    </div>        
+        
+</body>
+{% endblock %}
+
+</html>
+
+
+
+

@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stroke Data Analysis</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div>
+        <!-- Display your pie chart here -->
+        {{ plot_div|safe }}
+        <h1>plot your graph</h1>
+    </div>
+    <div>
+        <!-- Display your algorithm comparison bar chart here -->
+        <img src="{% static 'strokeapp/algorithm_comparison.png' %}" alt="Algorithm Comparison">
+    </div>
+</body>
+</html>
